@@ -1,6 +1,6 @@
 ;; -*-emacs-lisp-*-
 
-(add-to-list 'load-path "~/projects/dot/elisp")
+(add-to-list 'load-path "/home/cliff/projects/dot/elisp")
 (normal-top-level-add-subdirs-to-load-path)
 
 
@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-s-<left>") 'windmove-left)
 (global-set-key (kbd "C-s-<up>") 'windmove-up)
 (global-set-key (kbd "C-s-<down>") 'windmove-down)
-
+(require 'magit)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
