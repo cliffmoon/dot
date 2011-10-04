@@ -3,10 +3,18 @@
 (add-to-list 'load-path "~/projects/dot/elisp")
 (normal-top-level-add-subdirs-to-load-path)
 
-(require 'tabbar)
+
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-jedit-grey)
+(require 'tabbar)
+(tabbar-mode 1)
+(global-set-key (kbd "M-s-<right>") 'next-buffer)
+(global-set-key (kbd "M-s-<left>") 'previous-buffer)
+(global-set-key (kbd "C-s-<right>") 'windmove-right)
+(global-set-key (kbd "C-s-<left>") 'windmove-left)
+(global-set-key (kbd "C-s-<up>") 'windmove-up)
+(global-set-key (kbd "C-s-<down>") 'windmove-down)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
