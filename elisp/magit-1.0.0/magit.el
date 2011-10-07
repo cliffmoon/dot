@@ -234,7 +234,7 @@ Many Magit faces inherit from this one by default."
   :group 'magit-faces)
 
 (defface magit-diff-file-header
-  '((t :inherit magit-header))
+  '((t :weight bold :inherit magit-header))
   "Face for diff file header lines."
   :group 'magit-faces)
 
@@ -2269,6 +2269,13 @@ in the corresponding directories."
 			   (match-string-no-properties 1)))))
 	     (magit-set-section-info (list status file file2))
 	     (magit-insert-diff-title status file file2)
+	     (magit-put-line-property 'face 'magit-diff-file-header)
+	     (forward-line)
+	     (magit-put-line-property 'face 'magit-diff-file-header)
+	     (forward-line)
+	     (magit-put-line-property 'face 'magit-diff-file-header)
+	     (forward-line)
+	     (magit-put-line-property 'face 'magit-diff-file-header)
 	     (goto-char end)
 	     (let ((magit-section-hidden-default nil))
 	       (magit-wash-sequence #'magit-wash-hunk))))
@@ -2292,26 +2299,26 @@ in the corresponding directories."
 
 (defun magit-wash-hunk ()
   (cond ((looking-at "\\(^@+\\)[^@]*@+")
-	 (let ((n-columns (1- (length (match-string 1))))
-	       (head (match-string 0)))
-	   (magit-with-section head 'hunk
-	     (add-text-properties (match-beginning 0) (match-end 0)
-				  '(face magit-diff-hunk-header))
-	     (forward-line)
-	     (while (not (or (eobp)
-			     (looking-at "^diff\\|^@@")))
-	       (let ((prefix (buffer-substring-no-properties
-			      (point) (min (+ (point) n-columns) (point-max)))))
-		 (cond ((string-match "\\+" prefix)
-			(magit-put-line-property 'face 'magit-diff-add))
-		       ((string-match "-" prefix)
-			(magit-put-line-property 'face 'magit-diff-del))
-		       (t
-			(magit-put-line-property 'face 'magit-diff-none))))
-	       (forward-line))))
-	 t)
-	(t
-	 nil)))
+        (let ((n-columns (1- (length (match-string 1))))
+              (head (match-string 0)))
+          (magit-with-section head 'hunk
+            (add-text-properties (match-beginning 0) (match-end 0)
+                                 '(face magit-diff-hunk-header))
+            (forward-line)
+            (while (not (or (eobp)
+                            (looking-at "^diff\\|^@@")))
+              (let ((prefix (buffer-substring-no-properties
+                             (point) (min (+ (point) n-columns) (point-max)))))
+                (cond ((string-match "\\+" prefix)
+                       (magit-put-line-property 'face 'magit-diff-add))
+                      ((string-match "-" prefix)
+                       (magit-put-line-property 'face 'magit-diff-del))
+                      (t
+                       (magit-put-line-property 'face 'magit-diff-none))))
+              (forward-line))))
+        t)
+       (t
+        nil)))
 
 (defvar magit-diff-options nil)
 

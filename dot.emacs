@@ -6,7 +6,7 @@
 
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-jedit-grey)
+(color-theme-charcoal-black)
 (require 'tabbar)
 (tabbar-mode 1)
 (global-set-key (kbd "M-s-<right>") 'tabbar-forward-tab)
@@ -16,6 +16,18 @@
 (global-set-key (kbd "C-s-<up>") 'windmove-up)
 (global-set-key (kbd "C-s-<down>") 'windmove-down)
 (require 'magit)
+(eval-after-load 'magit
+  '(progn
+     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-foreground 'magit-diff-del "red1")
+     (set-face-background 'magit-item-highlight "grey20")
+     (set-face-foreground 'magit-diff-file-header "white")
+     
+     (set-face-background 'magit-diff-file-header "DodgerBlue4")
+     (set-face-foreground 'magit-diff-hunk-header "white")
+     (set-face-background 'magit-diff-hunk-header "DodgerBlue1")
+     (when (not window-system)
+       (set-face-background 'magit-item-highlight "black"))))
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
