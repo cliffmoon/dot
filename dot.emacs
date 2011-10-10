@@ -1,7 +1,7 @@
 ;; -*-emacs-lisp-*-
 
-(add-to-list 'load-path "/home/cliff/projects/dot/elisp")
-(normal-top-level-add-subdirs-to-load-path)
+(let ((default-directory "~/projects/dot/elisp"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 
 (require 'color-theme)
